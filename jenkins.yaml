@@ -1,0 +1,19 @@
+jenkins:
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code Plugin\n\n"
+  numExecutors: 5
+  scmCheckoutRetryCount: 2
+  mode: NORMAL
+
+tool:
+  git:
+    installations:
+      - name: git
+        home: /usr/local/bin/git
+
+plugins:
+  required:
+    generic-webhook-trigger: latest
+    git-changelog: latest
+    violation-comments-to-stash: latest
+    violation-comments-to-gitlab: latest
+    violation-comments-to-github: latest
