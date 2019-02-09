@@ -1,0 +1,74 @@
+jenkins:
+  systemMessage: "See also: https://github.com/tomasbjerre"
+  numExecutors: 4
+  scmCheckoutRetryCount: 2
+  mode: NORMAL
+  quietPeriod: 5
+  markupFormatter:
+    rawHtml:
+      disableSyntaxHighlighting: false
+  primaryView:
+    all:
+      name: "all"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
+  globalNodeProperties:
+  - envVars:
+      env:
+      - key: "gitlabUrl"
+        value: "http://localhost:80"
+      - key: "jenkinsUrl"
+        value: "http://localhost:8080"
+      - key: "jenkinsGitRepo"
+        value: "https://github.com/tomasbjerre/jenkins-configuration-as-code-sandbox.git"
+unclassified:
+  location:
+    url: "http://localhost:8080/"
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - string:
+              scope: GLOBAL
+              id: "gitlab-token"
+              secret: ${personal_access_token}
+              description: "GitLab personal access token"
+
+unclassified:
+  globalLibraries:
+    libraries:
+    - name: "Sandbox"
+    - defaultVersion: "master"
+      implicit: true
+      name: "sandbox"
+      retriever:
+        modernSCM:
+          scm:
+            git:
+              id: "sandbox-repo"
+              remote: "https://github.com/tomasbjerre/jenkins-configuration-as-code-sandbox.git"
+              traits:
+              - cloneOptionTrait:
+                  extension:
+                    depth: 1
+                    noTags: true
+                    shallow: true
+
+jobs:
+  - script: >
+      pipelineJob('Create Jobs Pipeline') {
+        quietPeriod(0)
+        concurrentBuild(false)
+        logRotator {
+          numToKeep(10)
+        }
+        triggers {
+          cron("H/15 * * * *")
+        }
+        definition {
+          cps {
+            script('createJobs()')
+          }
+        }
+      }

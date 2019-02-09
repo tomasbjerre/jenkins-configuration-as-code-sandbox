@@ -1,0 +1,5 @@
+{
+  "name": "${projectName}",
+  "description": "Description of ${projectName}",
+  "visibility": "public"
+}

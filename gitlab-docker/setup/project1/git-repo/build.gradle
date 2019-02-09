@@ -1,0 +1,31 @@
+buildscript {
+  repositories {
+    maven { url "https://plugins.gradle.org/m2/" }
+  }
+}
+
+plugins {
+  id "com.github.spotbugs" version "1.5"
+  id "java"
+  id "checkstyle"
+  id "pmd"
+}
+
+repositories {
+  maven { url "https://plugins.gradle.org/m2/" }
+  mavenLocal()
+  mavenCentral()
+}
+
+checkstyle {
+	toolVersion "6.19"
+  ignoreFailures = true
+}
+
+spotbugs {
+ ignoreFailures = true
+}
+
+pmd {
+ ignoreFailures = true
+}

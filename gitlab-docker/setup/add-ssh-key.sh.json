@@ -1,0 +1,4 @@
+{
+  "key": "${sshKey}",
+  "title": "The ssh key"
+}
