@@ -8,7 +8,6 @@ ENV JAVA_OPTS=-Djenkins.install.runSetupWizard=false
 
 RUN install-plugins.sh \
   configuration-as-code \
-  configuration-as-code-support \
   blueocean \
   job-dsl \
   cloudbees-folder \
