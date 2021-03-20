@@ -22,9 +22,6 @@ jenkins:
         value: "http://localhost:8080"
       - key: "jenkinsGitRepo"
         value: "https://github.com/tomasbjerre/jenkins-configuration-as-code-sandbox.git"
-unclassified:
-  location:
-    url: "http://localhost:8080/"
 credentials:
   system:
     domainCredentials:
@@ -36,6 +33,8 @@ credentials:
               description: "GitLab personal access token"
 
 unclassified:
+  location:
+    url: "http://localhost:8080/"
   globalLibraries:
     libraries:
     - name: "Sandbox"

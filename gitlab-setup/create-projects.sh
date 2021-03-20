@@ -1,8 +1,10 @@
 #!/bin/bash
 
+set -eux
+
 source config.txt
 export $(cut -d= -f1 config.txt)
-token=$(cat personal-access-token.txt)
+token=$(cat /shared/personal-access-token.txt)
 
 for i in `seq 1 20`; do
   export projectName="project${i}name"
@@ -18,7 +20,7 @@ for i in `seq 1 20`; do
   git init
   git add .
   git commit -a -m first
-  git remote add origin http://$gitlab_user:$gitlab_password@localhost/root/${projectName}.git
+  git remote add origin http://$gitlab_user:$gitlab_password@$gitlab_host_name/root/${projectName}.git
   git push -u origin master
   cd -
 done
