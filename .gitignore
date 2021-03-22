@@ -4,4 +4,4 @@ gitlab-docker/config/ssh*
 gitlab-docker/setup/cookies.txt
 gitlab-docker/setup/personal-access-token.txt
 gitlab-docker/setup/tmp.json
-gitlab-docker/setup/project1/git-repo/.git
+gitlab-setup/project1/git-repo/.git

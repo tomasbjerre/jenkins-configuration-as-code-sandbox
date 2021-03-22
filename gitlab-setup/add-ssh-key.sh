@@ -1,8 +1,10 @@
 #!/bin/bash
 
+set -eux
+
 source config.txt
 export $(cut -d= -f1 config.txt)
-token=$(cat personal-access-token.txt)
+token=$(cat /shared/personal-access-token.txt)
 export sshKey=$(cat ~/.ssh/id_rsa.pub)
 
 cat $0.json | envsubst > tmp.json

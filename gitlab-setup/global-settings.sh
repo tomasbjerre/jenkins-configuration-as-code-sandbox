@@ -1,8 +1,10 @@
 #!/bin/bash
 
+set -eux
+
 source config.txt
 export $(cut -d= -f1 config.txt)
-token=$(cat personal-access-token.txt)
+token=$(cat /shared/personal-access-token.txt)
 
 curl -v \
  -H "Content-Type: application/json" \

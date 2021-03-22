@@ -1,0 +1,4 @@
+gitlab_host_name=gitlab-docker
+gitlab_host=http://$gitlab_host_name
+gitlab_user="root"
+gitlab_password="thepassword" #From gitlab.rb

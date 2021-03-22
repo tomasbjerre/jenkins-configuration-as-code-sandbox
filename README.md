@@ -22,29 +22,22 @@ It also demonstrates a pattern where a "*contract*" is established between appli
 
 ## Usage
 
-**1. Start GitLab**
-
-Start GitLab and keep it running in one terminal:
-```
-./build-and-run-gitlab.sh
+**Start Environment**
+```shell
+docker-compose up -d 
 ```
 
-GitLab now available at http://localhost/ and you can login with credentials found [here](gitlab-docker/setup/config.txt).
+GitLab will be available in a few moments at http://localhost/ and you can login with credentials found [here](gitlab-setup/config.txt).
 
-
-**2. Setup GitLab**
-
-This script will import some projects into Gitlab and create a personal access token to use in Jenkins.
-```
-./setup-gitlab.sh
-```
-
-
-**3. Start Jenkins**
-
-```
-./build-and-run-jenkins.sh
-```
 Jenkins now available on: http://localhost:8080/
 
 JobDSL docs available at: http://localhost:8080/plugin/job-dsl/api-viewer/index.html
+
+**Destroy Environment**
+
+```shell
+docker-compose down -v -rmi local
+```
+all services are down and data lost
+
+Enjoy!

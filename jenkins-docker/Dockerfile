@@ -16,3 +16,7 @@ RUN install-plugins.sh \
   generic-webhook-trigger \
   git-changelog \
   violation-comments-to-gitlab
+
+COPY ./jenkins-wrapper.sh /usr/local/bin/jenkins-wrapper.sh
+
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/jenkins-wrapper.sh"]

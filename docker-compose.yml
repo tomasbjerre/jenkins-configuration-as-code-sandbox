@@ -1,0 +1,41 @@
+version: '3'
+services:
+
+  gitlab-docker:
+    build: ./gitlab-docker
+    ports:
+      - "443:443"
+      - "80:80"
+      - "2222:22"
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 4G
+  gitlab-setup:
+    build: ./gitlab-setup
+    volumes:
+      - shared-config:/shared
+  jenkins-docker:
+    build: ./jenkins-docker
+    # environment:
+      # todo read this from common volume ../gitlab-docker/setup/personal-access-token.txt
+      # - personal_access_token=$personal_access_token
+    volumes:
+      # Share your maven repo and ssh keys to access company resources
+      - ~/.m2:/var/jenkins_home/.m2
+      - ~/.ssh:/var/jenkins_home/.ssh
+      - /var/run/docker.sock:/var/run/docker.sock
+      - shared-config:/shared
+    ports:
+      - 8080:8080
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 4G
+
+volumes:
+  shared-config:
