@@ -36,7 +36,7 @@ JobDSL docs available at: http://localhost:8080/plugin/job-dsl/api-viewer/index.
 **Destroy Environment**
 
 ```shell
-docker-compose down -v -rmi local
+docker-compose down -v --rmi local
 ```
 all services are down and data lost
 
