@@ -24,7 +24,9 @@ def createSnapshotJob(repoFolder, repo) {
   pipelineJob(repoFolder+'/snapshot') {
     description('Triggered when pusing to default branch in GitLab ('+repo.default_branch+').')
     quietPeriod(0)
-    concurrentBuild(false)
+    properties {
+      disableConcurrentBuilds()
+    }
     logRotator {
       numToKeep(10)
     }
@@ -72,7 +74,9 @@ def createReleaseJob(repoFolder, repo) {
     description('Triggered when pusing tag to repo in GitLab ('+repo.cloneUrl+'). '
               + 'Or when run manually.')
     quietPeriod(0)
-    concurrentBuild(false)
+    properties {
+      disableConcurrentBuilds()
+    }
     logRotator {
       numToKeep(10)
     }
@@ -126,7 +130,9 @@ def createReleaseJob(repoFolder, repo) {
 def createMergeRequestJob(repoFolder, repo) {
   pipelineJob(repoFolder+'/merge-request') {
     quietPeriod(0)
-    concurrentBuild(true)
+    properties {
+      disableConcurrentBuilds()
+    }
     logRotator {
       numToKeep(10)
     }

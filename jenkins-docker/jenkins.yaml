@@ -58,7 +58,9 @@ jobs:
   - script: >
       pipelineJob('Create Jobs Pipeline') {
         quietPeriod(0)
-        concurrentBuild(false)
+        properties {
+          disableConcurrentBuilds()
+        }
         logRotator {
           numToKeep(10)
         }

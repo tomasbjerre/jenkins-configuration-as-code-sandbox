@@ -6,6 +6,13 @@ ENV CASC_JENKINS_CONFIG=$JENKINS_HOME/casc_configs
 
 ENV JAVA_OPTS=-Djenkins.install.runSetupWizard=false
 
+# install the "ip" executable called by se.bjurr.jenkinssandbox.JenkinsSandboxUtils#getHostIp()
+USER root
+RUN apt-get update \
+      && apt-get install -y iproute2 \
+      && rm -rf /var/lib/apt/lists/*
+USER jenkins
+
 RUN install-plugins.sh \
   configuration-as-code \
   blueocean \
